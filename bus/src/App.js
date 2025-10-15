@@ -287,7 +287,7 @@ function App() {
     useEffect(() => {
         const fetchBuses = async () => {
             try {
-                const response = await fetch('https://kg-mobile-api.busplus.rs/bus-data/location-tracking', {
+                const response = await fetch('https://kg-bus-proxy.dastegraphs.workers.dev/bus-data/location-tracking', {
                     headers: {
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfdHlwZSI6IkVLR19NT0JJTEVfQVBQIiwiaWF0IjoxNzQ0ODAwOTc0fQ.Ni2RKLQSSd2u1CBQv4yn2pNMXgRKJUmpMWR4qRSEQzw'
                     }
