@@ -293,6 +293,10 @@ function App() {
                     }
                 });
                 const data = await response.json();
+                console.log('API Response:', data);
+                console.log('Is Array?', Array.isArray(data));
+                console.log('Data type:', typeof data);
+                console.log('Data keys:', data ? Object.keys(data) : 'null');
                 setBuses(data);
             } catch (error) {
                 console.error('Error fetching buses:', error);
