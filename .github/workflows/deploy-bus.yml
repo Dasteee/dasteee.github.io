@@ -1,0 +1,73 @@
+name: Deploy Bus App to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'bus/**'
+      - '.github/workflows/deploy-bus.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          cd bus
+          npm ci
+
+      - name: Build
+        run: |
+          cd bus
+          npm run build
+
+      - name: Prepare deployment
+        run: |
+          # Copy build output to temporary directory
+          mkdir -p /tmp/bus-deploy
+          cp -r bus/build/* /tmp/bus-deploy/
+          
+          # Create 404.html for SPA routing
+          cp /tmp/bus-deploy/index.html /tmp/bus-deploy/404.html
+          
+          # Clear current bus/ directory (keep source in bus-src for safety)
+          rm -rf bus-deploy-temp
+          mkdir -p bus-deploy-temp
+          
+          # Move source to temporary location
+          mv bus bus-src-temp
+          
+          # Create new bus/ with build output
+          mkdir -p bus
+          cp -r /tmp/bus-deploy/* bus/
+          
+          # Clean up
+          rm -rf bus-src-temp
+
+      - name: Commit and push if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
+          git add bus/
+          
+          if git diff --quiet --cached; then
+            echo "No changes to deploy"
+            exit 0
+          fi
+          
+          git commit -m "chore(bus): deploy build [skip ci]"
+          git push
