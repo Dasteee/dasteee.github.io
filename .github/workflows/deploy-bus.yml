@@ -34,40 +34,13 @@ jobs:
           cd bus
           npm run build
 
-      - name: Prepare deployment
-        run: |
-          # Copy build output to temporary directory
-          mkdir -p /tmp/bus-deploy
-          cp -r bus/build/* /tmp/bus-deploy/
-          
-          # Create 404.html for SPA routing
-          cp /tmp/bus-deploy/index.html /tmp/bus-deploy/404.html
-          
-          # Clear current bus/ directory (keep source in bus-src for safety)
-          rm -rf bus-deploy-temp
-          mkdir -p bus-deploy-temp
-          
-          # Move source to temporary location
-          mv bus bus-src-temp
-          
-          # Create new bus/ with build output
-          mkdir -p bus
-          cp -r /tmp/bus-deploy/* bus/
-          
-          # Clean up
-          rm -rf bus-src-temp
+      - name: Add 404.html for SPA routing
+        run: cp bus/build/index.html bus/build/404.html
 
-      - name: Commit and push if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          
-          git add bus/
-          
-          if git diff --quiet --cached; then
-            echo "No changes to deploy"
-            exit 0
-          fi
-          
-          git commit -m "chore(bus): deploy build [skip ci]"
-          git push
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./bus/build
+          destination_dir: bus
+          keep_files: true
