@@ -148,7 +148,7 @@ const ChangeView = ({ center, zoom }) => {
 };
 
 const MapaComponent = ({ buses, mapCenter, mapZoom }) => {
-    const visibleBuses = useMemo(() => buses, [buses]);
+    const visibleBuses = useMemo(() => Array.isArray(buses) ? buses : [], [buses]);
 
     return (
         <MapContainer center={mapCenter} zoom={mapZoom} style={{ height: '100%', width: '100%' }}>
