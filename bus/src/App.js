@@ -292,12 +292,11 @@ function App() {
                         'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHBfdHlwZSI6IkVLR19NT0JJTEVfQVBQIiwiaWF0IjoxNzQ0ODAwOTc0fQ.Ni2RKLQSSd2u1CBQv4yn2pNMXgRKJUmpMWR4qRSEQzw'
                     }
                 });
-                const data = await response.json();
-                console.log('API Response:', data);
-                console.log('Is Array?', Array.isArray(data));
-                console.log('Data type:', typeof data);
-                console.log('Data keys:', data ? Object.keys(data) : 'null');
-                setBuses(data);
+                const responseData = await response.json();
+                const parsedData = JSON.parse(responseData.data);
+                const busesArray = parsedData?.ROOT?.BUSES?.BUS || [];
+                console.log('Buses count:', busesArray.length);
+                setBuses(busesArray);
             } catch (error) {
                 console.error('Error fetching buses:', error);
             }
