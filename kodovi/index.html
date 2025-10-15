@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="sr" data-theme="dark" data-lang="lat">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kodovi - dasteee.github.io</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="kodovi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-code"></i>
+                <span class="brand-text">dasteee / kodovi</span>
+            </div>
+            <div class="nav-menu">
+                <a href="/" class="nav-link back-link">
+                    <i class="fas fa-arrow-left"></i>
+                    <span data-key="nav.back">Nazad</span>
+                </a>
+                        <div class="nav-controls">
+                            <div class="language-switcher">
+                                <button class="lang-btn" data-lang="cyr" title="Ћирилица">Ћ</button>
+                                <button class="lang-btn active" data-lang="lat" title="Latinica">L</button>
+                                <button class="lang-btn" data-lang="eng" title="English">E</button>
+                            </div>
+                            <button class="theme-toggle" id="themeToggle">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                        </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title" data-key="kodovi.title">Кодови</h1>
+                    <p class="hero-subtitle" data-key="kodovi.subtitle">Кодови из школа, домаћих задатака и личних пројеката. Организовани по језицима и темама.</p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <i class="fab fa-cuttlefish"></i>
+                            <span class="stat-number">C</span>
+                            <span class="stat-label" data-key="kodovi.language">језик</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-plus"></i>
+                            <span class="stat-number">C++</span>
+                            <span class="stat-label" data-key="kodovi.language">језик</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-hashtag"></i>
+                            <span class="stat-number">C#</span>
+                            <span class="stat-label" data-key="kodovi.language">језик</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-cube"></i>
+                            <span class="stat-number">Lua</span>
+                            <span class="stat-label" data-key="kodovi.language">језик</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="code-sections">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="kodovi.explorer">File Explorer</h2>
+                    <p class="section-subtitle" data-key="kodovi.explorer.subtitle">Izaberite folder ili fajl da vidite kod</p>
+                </div>
+
+                <div class="file-browser">
+                    <div class="file-tree">
+                        <div class="tree-header">
+                            <span class="tree-title" data-key="kodovi.folders">Folderi</span>
+                            <div class="tree-actions">
+                                <button class="tree-btn" onclick="refreshFiles()" title="Refresh">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button class="tree-btn" onclick="toggleView()" title="Toggle View">
+                                    <i class="fas fa-th-large"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="tree-content">
+                            <!-- Folderi i fajlovi će se generisati dinamički iz JS-a na osnovu files.json -->
+                        </div>
+                    </div>
+
+                    <div class="code-viewer">
+                        <div class="viewer-header">
+                            <div class="file-tabs">
+                                <div class="tab active" data-file="welcome">
+                                    <i class="fas fa-info-circle tab-icon"></i>
+                                    <span class="tab-name" data-key="kodovi.welcome">Dobrodosli</span>
+                                </div>
+                            </div>
+                            <div class="viewer-actions">
+                                <button class="action-btn" onclick="copyAllCode()" title="Copy All">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <button class="action-btn" onclick="downloadCode()" title="Download">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="action-btn" onclick="formatCode()" title="Format">
+                                    <i class="fas fa-magic"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-content">
+                            <div class="welcome-message" id="welcomeMessage">
+                                <div class="welcome-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <h3 data-key="kodovi.welcome.title">Dobrodosli u File Explorer</h3>
+                                <p data-key="kodovi.welcome.text">
+                                    Izaberite fajl iz levog panela da vidite kod. Svi fajlovi su organizovani po folderima:
+                                </p>
+                                <div class="welcome-folders">
+                                    <div class="welcome-folder">
+                                        <i class="fas fa-folder"></i>
+                                        <span>test</span>
+                                    </div>
+                                    <div class="welcome-folder">
+                                        <i class="fas fa-folder"></i>
+                                        <span data-key="kodovi.folder.domaci">Domaci zadaci</span>
+                                    </div>
+                                    <div class="welcome-folder">
+                                        <i class="fab fa-roblox"></i>
+                                        <span data-key="kodovi.folder.roblox">Roblox Code</span>
+                                    </div>
+                                    <div class="welcome-folder">
+                                        <i class="fas fa-graduation-cap"></i>
+                                        <span data-key="kodovi.folder.skola">Skolski radovi</span>
+                                    </div>
+                                    <div class="welcome-folder">
+                                        <i class="fas fa-laptop-code"></i>
+                                        <span data-key="kodovi.folder.personal">Licni projekti</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <pre style="display: none;"><code id="codeContent"></code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="code-sections-grid">
+                    <div class="code-section">
+                        <div class="section-header">
+                            <h3 class="section-subtitle">
+                                <span class="title-icon">📝</span>
+                                <span class="title-text">Instrukcije</span>
+                            </h3>
+                        </div>
+                        <div class="section-content">
+                            <p>Da biste dodali kodove u ovaj folder:</p>
+                            <div class="instructions-list">
+                                <div class="instruction-item">
+                                    <span class="instruction-number">1</span>
+                                    <span class="instruction-text">Kreirajte novi fajl sa odgovarajućim ekstenzijom</span>
+                                </div>
+                                <div class="instruction-item">
+                                    <span class="instruction-number">2</span>
+                                    <span class="instruction-text">Dodajte kod u fajl</span>
+                                </div>
+                                <div class="instruction-item">
+                                    <span class="instruction-number">3</span>
+                                    <span class="instruction-text">Commit-ujte promene u git</span>
+                                </div>
+                                <div class="instruction-item">
+                                    <span class="instruction-number">4</span>
+                                    <span class="instruction-text">Push-ujte na GitHub</span>
+                                </div>
+                            </div>
+                            <div class="note">
+                                <span class="note-icon">💡</span>
+                                <span class="note-text">Fajlovi će se automatski pojaviti na ovoj stranici kada ih dodate!</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="code-section">
+                        <div class="section-header">
+                            <h3 class="section-subtitle">
+                                <span class="title-icon">⚙️</span>
+                                <span class="title-text">Funkcionalnosti</span>
+                            </h3>
+                        </div>
+                        <div class="section-content">
+                            <div class="features-list">
+                                <div class="feature-item">
+                                    <span class="feature-icon">🎨</span>
+                                    <span class="feature-text">Syntax highlighting</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">📋</span>
+                                    <span class="feature-text">Jedan klik kopiranje</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">💾</span>
+                                    <span class="feature-text">Download fajlova</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🌙</span>
+                                    <span class="feature-text">Dark/Light mode</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">📱</span>
+                                    <span class="feature-text">Responsive dizajn</span>
+                                </div>
+                                <div class="feature-item">
+                                    <span class="feature-icon">🔍</span>
+                                    <span class="feature-text">Pretraga koda</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p data-key="footer.made">Направљено са</p>
+                    <i class="fas fa-heart"></i>
+                    <p data-key="footer.by">од стране dasteee</p>
+                </div>
+                <div class="footer-right">
+                    <a href="https://github.com/dasteee" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://roblox.com/groups/12345678" target="_blank" class="social-link">
+                        <i class="fab fa-roblox"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+    <script src="kodovi.js"></script>
+</body>
+</html>

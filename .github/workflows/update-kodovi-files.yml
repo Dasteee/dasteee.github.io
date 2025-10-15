@@ -1,0 +1,41 @@
+name: Update kodovi files.json
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'kodovi/**'
+      - '!kodovi/files.json'
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Generate files.json
+        run: |
+          node scripts/generate_kodovi_files_json.js
+
+      - name: Create commit if changed
+        run: |
+          git add kodovi/files.json
+          if git diff --quiet --cached; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore(kodovi): update files.json [skip ci]"
+          git push

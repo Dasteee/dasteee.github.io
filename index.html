@@ -1,6 +1,277 @@
-//hello world
-<html>
+<!DOCTYPE html>
+<html lang="sr" data-theme="dark" data-lang="lat">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dasteee.github.io</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
     <body>
-        <h1>Hello World</h1>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-code"></i>
+                <span class="brand-text">dasteee</span>
+            </div>
+            <div class="nav-menu">
+                <a href="#home" class="nav-link" data-key="nav.home">Почетна</a>
+                <a href="#projects" class="nav-link" data-key="nav.projects">Пројекти</a>
+                <a href="#contact" class="nav-link" data-key="nav.contact">Контакт</a>
+                <div class="nav-controls">
+                    <div class="language-switcher">
+                        <button class="lang-btn" data-lang="cyr" title="Ћирилица">Ћ</button>
+                        <button class="lang-btn active" data-lang="lat" title="Latinica">L</button>
+                        <button class="lang-btn" data-lang="eng" title="English">E</button>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title" data-key="hero.title">Добродошли на мој сајт</h1>
+                    <p class="hero-subtitle" data-key="hero.subtitle">Ученик који учи C, C++ и C# програмирање. Такође радим Lua за Roblox са групом од 450K чланова.</p>
+                </div>
+                <div class="hero-actions">
+                    <a href="#projects" class="cta-button primary">
+                        <i class="fas fa-arrow-down"></i>
+                        <span data-key="cta.viewProjects">Vidi projekte</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="projects" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title" data-key="projects.title">Пројекти</h2>
+                    <p class="section-subtitle" data-key="projects.subtitle">Моји радови и активности</p>
+                </div>
+                
+                <!-- Roblox/Flisk Studios Projekti -->
+                <div class="project-category">
+                    <h3 class="category-title" data-key="projects.roblox.category">Roblox Projekti</h3>
+                    <div class="projects-grid">
+                        <!-- Group Card -->
+                        <div class="project-card featured">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fab fa-roblox"></i>
+                                </div>
+                                <div class="card-title">Flisk Studios – Group</div>
+                                <div class="realtime-badge" style="margin-left:auto;font-size:12px;opacity:0.7;display:flex;align-items:center;gap:6px;">
+                                    <i class="fas fa-circle" style="font-size:6px;"></i>
+                                    <span data-key="projects.realtime">Realtime</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <img id="groupLogo" alt="Flisk Studios Group Logo" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;" />
+                                <p class="card-description">
+                                    Roblox grupa Flisk Studios. Članovi u realnom vremenu.
+                                </p>
+                                <div class="card-stats">
+                                    <div class="mini-stat">
+                                        <i class="fas fa-users"></i>
+                                        <span id="memberCount">450,000</span>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://www.roblox.com/groups/16201023" target="_blank" rel="noopener" class="card-link">
+                                    <span>Otvori grupu</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Game Card -->
+                        <div class="project-card featured">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="card-title">Streamer Life – Game</div>
+                                <div class="realtime-badge" style="margin-left:auto;font-size:12px;opacity:0.7;display:flex;align-items:center;gap:6px;">
+                                    <i class="fas fa-circle" style="font-size:6px;"></i>
+                                    <span data-key="projects.realtime">Realtime</span>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <img id="gameLogo" alt="Streamer Life Game Icon" style="width:64px;height:64px;border-radius:12px;object-fit:cover;margin-bottom:8px;" />
+                                <p class="card-description">
+                                    Streamer Life igra. Posete u realnom vremenu.
+                                </p>
+                                <div class="card-stats" style="display:flex;gap:16px;flex-wrap:wrap;">
+                                    <div class="mini-stat">
+                                        <i class="fas fa-gamepad"></i>
+                                        <span id="visitCount">18,500,000</span>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <i class="fas fa-thumbs-up"></i>
+                                        <span id="likeCount">0</span>
+                                    </div>
+                                    <div class="mini-stat">
+                                        <i class="fas fa-star"></i>
+                                        <span id="favoriteCount">0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="https://www.roblox.com/games/12218138312" target="_blank" rel="noopener" class="card-link">
+                                    <span>Otvori igru</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kodovi i Skola -->
+                <div class="project-category">
+                    <h3 class="category-title" data-key="projects.code.category">Kodovi i Skola</h3>
+                    <div class="projects-grid">
+                        <div class="project-card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-code"></i>
+                                </div>
+                                <div class="card-title" data-key="projects.code.title">Kodovi</div>
+                                <div class="card-status active" data-key="projects.status.active">aktivno</div>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description" data-key="projects.code.description">
+                                    Kodovi iz skola, domacih zadataka i licnih projekata. 
+                                    Organizovani po jezicima i temama.
+                                </p>
+                                <div class="card-tech">
+                                    <span class="tech-tag">
+                                        <i class="fab fa-cuttlefish"></i>
+                                        C
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fas fa-plus"></i>
+                                        C++
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fas fa-hashtag"></i>
+                                        C#
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fas fa-cube"></i>
+                                        Lua
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="/kodovi/" class="card-link">
+                                    <span data-key="projects.view">Pogledaj</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="card-title" data-key="projects.school.title">Skolski radovi</div>
+                                <div class="card-status" data-key="projects.status.learning">ucenje</div>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description" data-key="projects.school.description">
+                                    Zadaci i projekti iz skole. C, C++ i C# programiranje.
+                                </p>
+                                <div class="card-tech">
+                                    <span class="tech-tag">
+                                        <i class="fab fa-cuttlefish"></i>
+                                        C
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fas fa-plus"></i>
+                                        C++
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fas fa-hashtag"></i>
+                                        C#
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="/kodovi/" class="card-link">
+                                    <span data-key="projects.view">Pogledaj</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="project-card">
+                            <div class="card-header">
+                                <div class="card-icon">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <div class="card-title" data-key="projects.personal.title">Licni projekti</div>
+                                <div class="card-status" data-key="projects.status.experimental">eksperimentalno</div>
+                            </div>
+                            <div class="card-content">
+                                <p class="card-description" data-key="projects.personal.description">
+                                    Eksperimenti, testovi i licni projekti.
+                                </p>
+                                <div class="card-tech">
+                                    <span class="tech-tag">
+                                        <i class="fas fa-cube"></i>
+                                        Lua
+                                    </span>
+                                    <span class="tech-tag">
+                                        <i class="fab fa-js"></i>
+                                        JavaScript
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <a href="/kodovi/" class="card-link">
+                                    <span data-key="projects.view">Pogledaj</span>
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p data-key="footer.made">Направљено са</p>
+                    <i class="fas fa-heart"></i>
+                    <p data-key="footer.by">од стране dasteee</p>
+                </div>
+                <div class="footer-right">
+                    <a href="https://github.com/dasteee" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://roblox.com/groups/12345678" target="_blank" class="social-link">
+                        <i class="fab fa-roblox"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
     </body>
 </html>
