@@ -459,10 +459,9 @@ const SearchComponent = ({ stanice, linije, buses, onResultSelect, searchTerm, s
 
 // --- KOMPLETNO REFAKTORISAN PANEL SA HIBRIDNOM ETA LOGIKOM ---
 const StationDetailsPanel = ({ station, linije, redVoznje, etaData, buses, onClose }) => {
-    if (!station) return null;
-  
     // 1. Priprema podataka o linijama koje staju na stanici (za gornji info deo)
     const enrichedRelevantLinije = useMemo(() => {
+        if (!station) return [];
         const seen = new Set();
         return linije.filter(l => {
             if (l.stopId === station.STOP_ID && !seen.has(l.routeDisplayCode)) {
@@ -479,6 +478,7 @@ const StationDetailsPanel = ({ station, linije, redVoznje, etaData, buses, onClo
   
     // Grupisanje linija za expandable UI
     const groupedLinije = useMemo(() => {
+        if (!station) return {};
         const groups = {};
         enrichedRelevantLinije.forEach(linija => {
             const baseNumber = linija.routeDisplayCode.split('/')[0];
@@ -486,7 +486,7 @@ const StationDetailsPanel = ({ station, linije, redVoznje, etaData, buses, onClo
             groups[baseNumber].push(linija);
         });
         return groups;
-    }, [enrichedRelevantLinije]);
+    }, [station, enrichedRelevantLinije]);
     
     // --- NOVA, UNAPREĐENA LOGIKA ZA KOMBINOVANJE REDA VOŽNJE I LIVE ETA PODATAKA ---
     const combinedArrivals = useMemo(() => {
@@ -695,13 +695,14 @@ const StationDetailsPanel = ({ station, linije, redVoznje, etaData, buses, onClo
     }, [station, buses, linije, etaData, redVoznje]);
     
     const getStatusColorClass = (status) => {
-        if (!status) return 'text-gray-700';
-        if (status.startsWith('Kasni')) return 'text-blue-600 font-semibold';
+        if (status.startsWith('Kasni')) return 'text-orange-600 font-semibold';
         if (status.startsWith('Ranije')) return 'text-red-600 font-semibold';
         if (status.startsWith('Na vreme')) return 'text-green-600 font-semibold';
         return 'text-gray-700';
     };
   
+    if (!station) return null;
+
     return (
         <div className="absolute top-0 left-0 h-full w-full md:w-1/3 lg:w-1/4 bg-white/90 backdrop-blur-sm shadow-lg z-[1001] p-4 flex flex-col">
             <div className="flex justify-between items-center mb-4">
@@ -774,10 +775,10 @@ const StationDetailsPanel = ({ station, linije, redVoznje, etaData, buses, onClo
   };
 
 const LineDetailsPanel = ({ line, onClose }) => {
-    if (!line) return null;
     const [sledeciPolasci, setSledeciPolasci] = useState([]);
 
     useEffect(() => {
+        if (!line) return;
         const danUNedelji = new Date().getDay();
         const scheduleType = (danUNedelji === 0) ? '7' : (danUNedelji === 6) ? '6' : '5';
         const now = new Date();
@@ -789,6 +790,8 @@ const LineDetailsPanel = ({ line, onClose }) => {
             .slice(0, 5);
         setSledeciPolasci(polasci);
     }, [line]);
+
+    if (!line) return null;
 
     return (
         <div className="absolute top-0 left-0 h-full w-full md:w-1/3 lg:w-1/4 bg-white/90 backdrop-blur-sm shadow-lg z-[1001] p-4 flex flex-col">
