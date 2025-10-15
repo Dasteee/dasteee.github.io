@@ -1,11 +1,8 @@
-name: Deploy Bus App to GitHub Pages
+name: Deploy Site to GitHub Pages
 
 on:
   push:
     branches: [ main ]
-    paths:
-      - 'bus/**'
-      - '.github/workflows/deploy-bus.yml'
 
 permissions:
   contents: write
@@ -16,31 +13,42 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Install dependencies
+      - name: Build bus app
         run: |
           cd bus
           npm ci
-
-      - name: Build
-        run: |
-          cd bus
           npm run build
+          cp build/index.html build/404.html
 
-      - name: Add 404.html for SPA routing
-        run: cp bus/build/index.html bus/build/404.html
+      - name: Prepare full site for deployment
+        run: |
+          mkdir -p _site
+          
+          # Copy all root files (HTML, CSS, JS, assets)
+          cp -r *.html *.css *.js *.png *.ico *.json _site/ 2>/dev/null || true
+          
+          # Copy kodovi folder
+          cp -r kodovi _site/ 2>/dev/null || true
+          
+          # Copy any other folders except bus source, node_modules, .git
+          for dir in */; do
+            if [[ "$dir" != "bus/" && "$dir" != "node_modules/" && "$dir" != ".git/" && "$dir" != "_site/" ]]; then
+              cp -r "$dir" _site/
+            fi
+          done
+          
+          # Copy built bus app
+          cp -r bus/build _site/bus
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./bus/build
-          destination_dir: bus
-          keep_files: true
+          publish_dir: ./_site
+          keep_files: false
