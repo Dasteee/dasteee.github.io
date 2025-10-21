@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - dasteee.github.io</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <div class="nav-brand">
+                <i class="fas fa-code"></i>
+                <span class="brand-text">dasteee</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link" data-key="nav.home">nav.home</a>
+                <a href="index.html#projects" class="nav-link" data-key="nav.projects">nav.projects</a>
+                <a href="about.html" class="nav-link" data-key="nav.about">nav.about</a>
+                <div class="nav-controls">
+                    <div class="language-switcher">
+                        <button class="lang-btn active" data-lang="eng" title="English">ENG</button>
+                        <button class="lang-btn" data-lang="lat" title="Srpski">SRB</button>
+                    </div>
+                    <button class="theme-toggle" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main">
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title" data-key="about.title">about.title</h1>
+                    <p class="section-subtitle" data-key="about.subtitle">about.subtitle</p>
+                </div>
+
+                <div class="about-content">
+                    <div class="about-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-user"></i>
+                            </div>
+                            <h2 class="card-title" data-key="about.profile.title">about.profile.title</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="profile-info">
+                                <img src="https://github.com/dasteee.png" alt="Profile Picture" class="profile-picture">
+                                <div class="profile-details">
+                                    <h3 data-key="about.profile.name">about.profile.name</h3>
+                                    <p data-key="about.profile.role">about.profile.role</p>
+                                    <p class="profile-bio" data-key="about.profile.bio">
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h2 class="card-title" data-key="about.skills.title">about.skills.title</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="skills-grid">
+                                <div class="skill-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-key="about.skills.skill1">about.skills.skill1</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-key="about.skills.skill2">about.skills.skill2</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-key="about.skills.skill3">about.skills.skill3</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-key="about.skills.skill4">about.skills.skill4</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span data-key="about.skills.skill5">about.skills.skill5</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <h2 class="card-title" data-key="about.interests.title">about.interests.title</h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="interests-grid">
+                                <div class="interest-item">
+                                    <i class="fas fa-gamepad"></i>
+                                    <span data-key="about.interests.interest1">about.interests.interest1</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-laptop-code"></i>
+                                    <span data-key="about.interests.interest2">about.interests.interest2</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-music"></i>
+                                    <span data-key="about.interests.interest3">about.interests.interest3</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-book"></i>
+                                    <span data-key="about.interests.interest4">about.interests.interest4</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="about-card contact-card">
+                        <div class="card-header">
+                            <div class="card-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <h2 class="card-title" data-key="about.contact.title">about.contact.title</h2>
+                        </div>
+                        <div class="card-content">
+                            <p class="contact-intro" data-key="about.contact.intro">about.contact.intro</p>
+                            <div class="contact-options">
+                                <a href="mailto:your.email@example.com" class="contact-item" data-key="about.contact.email">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="contact-details">
+                                        <span class="contact-label">Email</span>
+                                        <span class="contact-value">your.email@example.com</span>
+                                    </div>
+                                </a>
+                                <a href="https://github.com/your-username" target="_blank" class="contact-item" data-key="about.contact.github">
+                                    <i class="fab fa-github"></i>
+                                    <div class="contact-details">
+                                        <span class="contact-label">GitHub</span>
+                                        <span class="contact-value">@your-username</span>
+                                    </div>
+                                </a>
+                                <a href="https://discord.gg/your-invite" target="_blank" class="contact-item" data-key="about.contact.discord">
+                                    <i class="fab fa-discord"></i>
+                                    <div class="contact-details">
+                                        <span class="contact-label">Discord</span>
+                                        <span class="contact-value">your-username#0000</span>
+                                    </div>
+                                </a>
+                                <a href="https://twitter.com/your-username" target="_blank" class="contact-item" data-key="about.contact.twitter">
+                                    <i class="fab fa-twitter"></i>
+                                    <div class="contact-details">
+                                        <span class="contact-label">Twitter</span>
+                                        <span class="contact-value">@your-username</span>
+                                    </div>
+                                </a>
+                                <a href="https://linkedin.com/in/your-username" target="_blank" class="contact-item" data-key="about.contact.linkedin">
+                                    <i class="fab fa-linkedin"></i>
+                                    <div class="contact-details">
+                                        <span class="contact-label">LinkedIn</span>
+                                        <span class="contact-value">your-username</span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p data-key="footer.made">footer.made</p>
+                    <i class="fas fa-heart"></i>
+                    <p data-key="footer.by">footer.by</p>
+                </div>
+                <div class="footer-right">
+                    <a href="https://github.com/dasteee" target="_blank" class="social-link">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://roblox.com/groups/12345678" target="_blank" class="social-link">
+                        <i class="fab fa-roblox"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
