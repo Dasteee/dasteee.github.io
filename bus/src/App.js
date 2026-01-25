@@ -697,6 +697,29 @@ function App() {
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
                 </button>
             )}
+            {/* Deprecation Modal - Force New Site */}
+            <div className="absolute inset-0 z-[2000] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 h-full w-full">
+                <div className="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 text-center transform transition-all scale-100 border border-gray-200">
+                    <div className="mb-4 text-blue-600 flex justify-center">
+                        <svg className="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                    </div>
+                    <h2 className="text-2xl font-bold text-gray-800 mb-2">Predjite na novi sajt</h2>
+                    <p className="text-gray-600 mb-6">
+                        Ovaj sajt se više ne ažurira. Nova verzija aplikacije (ekg-tracker) donosi nove funkcionalnosti, brže učitavanje i tačnije podatke.
+                    </p>
+                    <a 
+                        href="https://ekg-tracker.vercel.app" 
+                        className="inline-block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 px-6 rounded-lg transition-colors duration-200 shadow-lg text-lg mb-3"
+                    >
+                        Otvori novi sajt
+                    </a>
+                    <p className="text-xs text-gray-400">
+                        Podaci na ovom sajtu mogu biti zastareli.
+                    </p>
+                </div>
+            </div>
         </div>
     );
 }
